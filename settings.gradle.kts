@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "log"
 include(":app")
 include(":log")
+include(":log-android")
