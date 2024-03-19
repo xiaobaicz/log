@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
+    `maven-publish`
+    signing
 }
 
 android {
@@ -42,4 +44,52 @@ dependencies {
 
     implementation(libs.auto.service.annotations)
     kapt(libs.auto.service)
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "io.github.xiaobaicz"
+            artifactId = "log-android"
+            version = "0.0.1"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+
+            pom {
+                name = "log-android"
+                description = "android log lib - android log"
+                url = "https://github.com/xiaobaicz/log"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        name = "bocheng.lao"
+                        email = "xiaojinjincz@outlook.com"
+                        organization = "bocheng.lao"
+                        organizationUrl = "https://xiaobaicz.github.io"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/xiaobaicz/log.git"
+                    developerConnection = "scm:git:https://github.com/xiaobaicz/log.git"
+                    url = "https://github.com/xiaobaicz/log"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = uri("../build/maven")
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications["release"])
 }
