@@ -2,26 +2,19 @@ package io.github.xiaobaicz.log
 
 interface Log {
 
-    fun log(obj: Any?)
+    fun log(tag: Tag, obj: Any?)
 
-    fun log(format: String, vararg args: Any?)
+    fun log(tag: Tag, format: String, vararg args: Any?)
 
-    fun log(t: Throwable)
+    fun log(tag: Tag, t: Throwable)
 
-    fun log(t: Throwable, format: String, vararg args: Any?)
+    fun log(tag: Tag, t: Throwable, format: String, vararg args: Any?)
 
     companion object {
-
-        var tag: String = "Debug"
-
-        @Synchronized
-        fun scope(tag: String, block: () -> Unit) {
-            val oldTag = Log.tag
-            Log.tag = tag
-            block()
-            Log.tag = oldTag
+        internal var tag: Tag = Tag("Debug")
+        fun setTag(tag: String) {
+            Log.tag = Tag(tag)
         }
-        
     }
 
 }

@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("kotlin-kapt")
     `maven-publish`
     signing
 }
@@ -41,9 +40,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(project(":log"))
-
-    implementation(libs.auto.service.annotations)
-    kapt(libs.auto.service)
 }
 
 publishing {

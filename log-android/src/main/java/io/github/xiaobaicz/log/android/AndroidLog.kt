@@ -1,26 +1,25 @@
 package io.github.xiaobaicz.log.android
 
-import com.google.auto.service.AutoService
 import io.github.xiaobaicz.log.Log
+import io.github.xiaobaicz.log.Tag
 import android.util.Log as ALog
 
-@AutoService(Log::class)
 class AndroidLog : Log {
 
-    override fun log(obj: Any?) {
-        ALog.d(Log.tag, obj.toString())
+    override fun log(tag: Tag, obj: Any?) {
+        ALog.d(tag.value, obj.toString())
     }
 
-    override fun log(format: String, vararg args: Any?) {
-        ALog.d(Log.tag, String.format(format, *args))
+    override fun log(tag: Tag, format: String, vararg args: Any?) {
+        ALog.d(tag.value, String.format(format, *args))
     }
 
-    override fun log(t: Throwable) {
-        ALog.e(Log.tag, t.message, t)
+    override fun log(tag: Tag, t: Throwable) {
+        ALog.e(tag.value, t.message, t)
     }
 
-    override fun log(t: Throwable, format: String, vararg args: Any?) {
-        ALog.e(Log.tag, String.format(format, *args), t)
+    override fun log(tag: Tag, t: Throwable, format: String, vararg args: Any?) {
+        ALog.e(tag.value, String.format(format, *args), t)
     }
 
 }

@@ -1,0 +1,1 @@
+-keep class ** implements io.github.xiaobaicz.log.Log { public *; }
