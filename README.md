@@ -1,7 +1,7 @@
 ~~~ kotlin
 dependencies {
-    implementation("io.github.xiaobaicz:log:0.0.1")
-    debugImplementation("io.github.xiaobaicz:log-android:0.0.1")
+    implementation("io.github.xiaobaicz:log:0.0.2")
+    debugImplementation("io.github.xiaobaicz:log-android:0.0.2")
 }
 ~~~
 
